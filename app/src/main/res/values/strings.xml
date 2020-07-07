@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BrewTracker</string>
+
+    <string name="toolbar_drawer_description">Drawer</string>
+    <string name="toolbar_account_description">Account</string>
+
+    <string name="card_edit_description">Edit recipe</string>
+    <string name="card_delete_description">Delete recipe</string>
+    <string name="card_calendar_description">Calendar</string>
+
+    <string name="recipes_tab">Recipes</string>
+    <string name="brews_tab">Brews</string>
 </resources>
