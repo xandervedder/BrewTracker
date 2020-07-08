@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">BrewTracker</string>
 
     <string name="toolbar_drawer_description">Drawer</string>
@@ -10,4 +11,12 @@
 
     <string name="recipes_tab">Recipes</string>
     <string name="brews_tab">Brews</string>
+
+    <string name="title_activity_create_recipe">Create Recipe</string>
+
+    <string name="input_hint_recipe_name">Name</string>
+    <string name="input_hint_recipe_type">Type</string>
+
+    <string name="button_create_recipe">Create</string>
+
 </resources>

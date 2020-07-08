@@ -6,9 +6,10 @@
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+    <vedder.xander.brewtracker.ui.view.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recipes_view"

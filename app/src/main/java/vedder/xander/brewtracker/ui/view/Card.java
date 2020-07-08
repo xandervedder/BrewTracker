@@ -10,9 +10,6 @@ import androidx.annotation.Nullable;
 import vedder.xander.brewtracker.R;
 import vedder.xander.brewtracker.model.Recipe;
 
-/**
- * Might want to rename this to CardView
- */
 public class Card extends LinearLayout {
 
     private Recipe recipe; // In the future this should be more generic

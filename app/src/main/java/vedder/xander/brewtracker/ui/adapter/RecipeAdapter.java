@@ -11,6 +11,9 @@ import java.util.List;
 import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.ui.view.Card;
 
+/**
+ * This could potentially be the only adapter we need.
+ */
 public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Recipe> dataset;
