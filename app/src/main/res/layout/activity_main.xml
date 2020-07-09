@@ -6,16 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
-    
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@null">
 
-        <vedder.xander.brewtracker.ui.view.Toolbar
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:gravity="center" />
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <vedder.xander.brewtracker.ui.view.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:gravity="center" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

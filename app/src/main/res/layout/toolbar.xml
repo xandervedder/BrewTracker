@@ -11,8 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/toolbar_drawer_description"
         android:src="@drawable/ic_baseline_menu_24"
+        android:contentDescription="@string/toolbar_drawer_description"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -33,8 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginEnd="15dp"
-        android:contentDescription="@string/toolbar_account_description"
         android:src="@drawable/ic_baseline_account_circle_24"
+        android:contentDescription="@string/toolbar_account_description"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
         tools:ignore="MissingConstraints" />
 
 </androidx.appcompat.widget.Toolbar>
