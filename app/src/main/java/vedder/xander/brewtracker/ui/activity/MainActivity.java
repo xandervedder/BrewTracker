@@ -9,12 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ImageView;
 
-import java.lang.reflect.Array;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import vedder.xander.brewtracker.R;
@@ -50,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RecipeAdapter(this.recipes));
 
-        ImageView imageView = findViewById(R.id.toolbar_drawer);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.add_recipe);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), CreateRecipeActivity.class);

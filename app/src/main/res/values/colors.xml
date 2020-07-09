@@ -7,4 +7,8 @@
 
     <color name="appBackground">#F8F8F8</color>
     <color name="appBorder">#D4D4D4</color>
+
+    <color name="lightIcon">#FFF</color>
+
+    <color name="fabRippleColor">#FFB600</color>
 </resources>

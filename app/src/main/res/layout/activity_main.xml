@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
-
-    <vedder.xander.brewtracker.ui.view.Toolbar
+    
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center" />
+        android:layout_height="wrap_content"
+        android:stateListAnimator="@null">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipes_view"
+        <vedder.xander.brewtracker.ui.view.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipes_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_add_24"
+        android:tint="@color/lightIcon"
+        android:scaleType="center"
+        android:clickable="true"
+        app:rippleColor="@color/fabRippleColor" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
