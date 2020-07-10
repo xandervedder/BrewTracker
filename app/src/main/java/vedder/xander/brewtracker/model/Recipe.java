@@ -1,8 +1,9 @@
 package vedder.xander.brewtracker.model;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-public class Recipe {
+public class Recipe extends AbstractDataItem {
 
     private LocalDate createdAt;
     private String name;
@@ -36,5 +37,20 @@ public class Recipe {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String get(String parameterName) {
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getName().equals(parameterName)) {
+                try {
+                    return field.get(this).toString();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 }

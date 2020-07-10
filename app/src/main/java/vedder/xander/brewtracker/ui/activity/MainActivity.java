@@ -17,14 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vedder.xander.brewtracker.R;
+import vedder.xander.brewtracker.factory.CardFactory;
+import vedder.xander.brewtracker.model.AbstractDataItem;
 import vedder.xander.brewtracker.model.Recipe;
-import vedder.xander.brewtracker.ui.adapter.RecipeAdapter;
+import vedder.xander.brewtracker.ui.adapter.GenericAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1;
 
-    private List<Recipe> recipes;
+    private List<AbstractDataItem> recipes;
     private RecyclerView recyclerView;
 
     public MainActivity() {
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.recyclerView = findViewById(R.id.recipes_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecipeAdapter(this.recipes));
+        recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
 
         FloatingActionButton fab = findViewById(R.id.add_recipe);
         fab.setOnClickListener(new View.OnClickListener() {
