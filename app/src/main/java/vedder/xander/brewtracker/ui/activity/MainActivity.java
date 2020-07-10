@@ -1,5 +1,6 @@
 package vedder.xander.brewtracker.ui.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // Test data (will be removed soon)
         this.recipes.add(new Recipe(LocalDate.now(), "Test 1", "Cider"));
@@ -46,17 +48,23 @@ public class MainActivity extends AppCompatActivity {
         this.recipes.add(new Recipe(LocalDate.now(), "Test 6", "Beer"));
         this.recipes.add(new Recipe(LocalDate.now(), "Test 7", "Beer"));
 
-        setContentView(R.layout.activity_main);
-        this.recyclerView = findViewById(R.id.recipes_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
-
-        FloatingActionButton fab = findViewById(R.id.add_recipe);
+        final FloatingActionButton fab = findViewById(R.id.add_recipe);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), CreateRecipeActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+        this.recyclerView = findViewById(R.id.recipes_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    if (dy > 0) fab.hide();
+                    else if (dy < 0) fab.show();
             }
         });
     }
