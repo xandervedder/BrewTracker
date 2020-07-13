@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/page_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/bottom_menu_home" />
+
+    <item
+        android:id="@+id/page_recipe"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="@string/bottom_menu_recipe" />
+
+    <item
+        android:id="@+id/page_brew"
+        android:enabled="false"
+        android:icon="@drawable/ic_baseline_local_bar_24"
+        android:title="@string/bottom_menu_brew" />
+
+</menu>

@@ -1,98 +1,71 @@
 package vedder.xander.brewtracker.ui.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
+import android.view.MenuItem;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import vedder.xander.brewtracker.R;
-import vedder.xander.brewtracker.factory.CardFactory;
-import vedder.xander.brewtracker.model.AbstractDataItem;
-import vedder.xander.brewtracker.model.Recipe;
-import vedder.xander.brewtracker.ui.adapter.GenericAdapter;
+import vedder.xander.brewtracker.ui.fragment.HomeFragment;
+import vedder.xander.brewtracker.ui.fragment.RecipeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE = 1;
-
-    private List<AbstractDataItem> recipes;
-    private RecyclerView recyclerView;
-
-    public MainActivity() {
-        this.recipes = new ArrayList<>();
-    }
+//    private static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Test data (will be removed soon)
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 1", "Cider"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 2", "Beer"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 3", "Mead"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 4", "Mead"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 5", "Cider"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 6", "Beer"));
-        this.recipes.add(new Recipe(LocalDate.now(), "Test 7", "Beer"));
-
-        final FloatingActionButton fab = findViewById(R.id.add_recipe);
-        fab.setOnClickListener(new View.OnClickListener() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), CreateRecipeActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.page_home: return loadFragment(new HomeFragment());
+                    case R.id.page_recipe: return loadFragment(new RecipeFragment());
+                    case R.id.page_brew:
+                    default: return false;
+                }
             }
         });
-
-        this.recyclerView = findViewById(R.id.recipes_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    if (dy > 0) fab.hide();
-                    else if (dy < 0) fab.show();
-            }
-        });
+        this.loadFragment(new HomeFragment());
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == RESULT_OK && data != null) {
-                Bundle bundle = data.getExtras();
-                this.recipes.add(new Recipe(
-                        LocalDate.now(),
-                        bundle.get("name").toString(),
-                        bundle.get("type").toString()
-                ));
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateRecyclerView();
-                    }
-                }, 500);
-            }
-        }
+    private boolean loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+        return true;
     }
 
-    private void updateRecyclerView() {
-        this.recyclerView.smoothScrollToPosition(this.recipes.size() - 1);
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        // Might need to be moved to a fragment instead, or maybe not? :)
+//        if (requestCode == REQUEST_CODE) {
+//            if (resultCode == RESULT_OK && data != null) {
+//                Bundle bundle = data.getExtras();
+//                this.recipes.add(new Recipe(
+//                        LocalDate.now(),
+//                        bundle.get("name").toString(),
+//                        bundle.get("type").toString()
+//                ));
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        updateRecyclerView();
+//                    }
+//                }, 500);
+//            }
+//        }
+//    }
 }
