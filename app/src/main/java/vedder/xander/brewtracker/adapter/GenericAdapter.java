@@ -11,9 +11,6 @@ import vedder.xander.brewtracker.factory.AbstractViewFactory;
 import vedder.xander.brewtracker.model.AbstractDataItem;
 import vedder.xander.brewtracker.ui.view.AbstractView;
 
-/**
- * This could potentially be the only adapter we need.
- */
 public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private AbstractViewFactory<? extends AbstractView> viewFactory;
@@ -44,6 +41,7 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
+        // TODO: return more depending on some booleans (showHeader, showFooter, etc.):
         return this.dataset.size();
     }
 

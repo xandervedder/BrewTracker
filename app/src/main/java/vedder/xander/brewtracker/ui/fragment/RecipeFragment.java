@@ -1,5 +1,6 @@
 package vedder.xander.brewtracker.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,9 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,8 +25,13 @@ import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.model.AbstractDataItem;
 import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.ui.activity.CreateRecipeActivity;
+
+import static android.app.Activity.RESULT_OK;
 
 public class RecipeFragment extends Fragment {
+
+    private static final int REQUEST_CODE = 1;
 
     private RecyclerView recyclerView;
     private List<AbstractDataItem> recipes;
@@ -47,25 +56,48 @@ public class RecipeFragment extends Fragment {
         this.recipes.add(new Recipe(LocalDate.now(), "Test 6", "Beer"));
         this.recipes.add(new Recipe(LocalDate.now(), "Test 7", "Beer"));
 
-        //        final FloatingActionButton fab = findViewById(R.id.add_recipe);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getBaseContext(), CreateRecipeActivity.class);
-//                startActivityForResult(intent, REQUEST_CODE);
-//            }
-//        });
+        final FloatingActionButton fab = getView().findViewById(R.id.add_recipe);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(), CreateRecipeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
 
         this.recyclerView = getView().findViewById(R.id.recipes_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                if (dy > 0) fab.hide();
-//                else if (dy < 0) fab.show();
-//            }
-//        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0) fab.hide();
+                else if (dy < 0) fab.show();
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK && data != null) {
+                Bundle bundle = data.getExtras();
+                this.recipes.add(new Recipe(
+                        LocalDate.now(),
+                        bundle.get("name").toString(),
+                        bundle.get("type").toString()
+                ));
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateRecyclerView();
+                    }
+                }, 500);
+            }
+        }
     }
 
     private void updateRecyclerView() {
