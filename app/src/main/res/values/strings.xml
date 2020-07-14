@@ -25,4 +25,6 @@
 
     <string name="fragment_home">Home</string>
     <string name="fragment_recipe">Recipe</string>
+    <string name="fragment_brew">Brew</string>
+
 </resources>

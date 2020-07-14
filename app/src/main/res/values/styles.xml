@@ -8,7 +8,6 @@
 
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/colorToolbar</item>
-        <item name="android:background">@color/appBackground</item>
 
     </style>
 

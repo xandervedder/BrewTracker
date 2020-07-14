@@ -2,9 +2,11 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_height="56dp"
-    android:background="@color/colorToolbar">
+    android:background="@color/colorToolbar"
+    app:layout_collapseMode="pin">
 
     <ImageView
         android:id="@+id/toolbar_drawer"

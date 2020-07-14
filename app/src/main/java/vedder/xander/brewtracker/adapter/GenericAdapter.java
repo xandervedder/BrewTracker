@@ -1,4 +1,4 @@
-package vedder.xander.brewtracker.ui.adapter;
+package vedder.xander.brewtracker.adapter;
 
 import android.view.ViewGroup;
 

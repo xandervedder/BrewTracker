@@ -20,7 +20,7 @@ import vedder.xander.brewtracker.R;
 import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.model.AbstractDataItem;
 import vedder.xander.brewtracker.model.Recipe;
-import vedder.xander.brewtracker.ui.adapter.GenericAdapter;
+import vedder.xander.brewtracker.adapter.GenericAdapter;
 
 public class RecipeFragment extends Fragment {
 
