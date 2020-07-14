@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
     android:layout_height="56dp"
     android:background="@color/colorToolbar"
-    app:layout_collapseMode="pin">
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/toolbar_drawer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_baseline_menu_24"
-        android:contentDescription="@string/toolbar_drawer_description"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/toolbar_drawer_description"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_gravity="center"
         android:text="@string/recipes_tab"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -37,10 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginEnd="15dp"
-        android:src="@drawable/ic_baseline_account_circle_24"
-        android:contentDescription="@string/toolbar_account_description"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/toolbar_account_description"
+        android:src="@drawable/ic_baseline_account_circle_24"
         tools:ignore="MissingConstraints" />
 
 </androidx.appcompat.widget.Toolbar>
