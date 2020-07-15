@@ -38,7 +38,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:contentDescription="@string/toolbar_account_description"
-        android:src="@drawable/ic_baseline_account_circle_24"
+        android:src="@drawable/ic_baseline_settings_24"
         tools:ignore="MissingConstraints" />
 
 </androidx.appcompat.widget.Toolbar>
