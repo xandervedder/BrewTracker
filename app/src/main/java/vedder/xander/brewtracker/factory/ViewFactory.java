@@ -4,7 +4,7 @@ import android.content.Context;
 
 import vedder.xander.brewtracker.ui.view.AbstractView;
 
-public interface AbstractViewFactory<T extends AbstractView> {
+public interface ViewFactory<T extends AbstractView> {
 
     T assemble(Context context);
 }

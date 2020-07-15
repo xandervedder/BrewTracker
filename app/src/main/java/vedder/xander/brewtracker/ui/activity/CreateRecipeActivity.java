@@ -1,19 +1,20 @@
 package vedder.xander.brewtracker.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-import android.widget.Button;
+import java.util.ArrayList;
+import java.util.List;
 
 import vedder.xander.brewtracker.R;
+import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.factory.CardFactory;
+import vedder.xander.brewtracker.factory.TextInputFactory;
+import vedder.xander.brewtracker.factory.ViewFactory;
+import vedder.xander.brewtracker.ui.view.AbstractView;
 
 public class CreateRecipeActivity extends AppCompatActivity {
 
@@ -21,22 +22,31 @@ public class CreateRecipeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipe);
-        Button button = findViewById(R.id.create_recipe);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createRecipe();
-            }
-        });
+
+        List<ViewFactory<? extends AbstractView>> factories = new ArrayList<>();
+        factories.add(new TextInputFactory());
+//        factories.add(new CardFactory());
+
+        RecyclerView recyclerView = findViewById(R.id.recipe_create_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new GenericAdapter(null, factories, true, 3));
+
+//        Button button = findViewById(R.id.create_recipe);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                createRecipe();
+//            }
+//        });
     }
 
     private void createRecipe() {
-        TextInputLayout layoutName = findViewById(R.id.recipe_name);
-        TextInputLayout layoutType = findViewById(R.id.recipe_type);
-        Intent intent = new Intent();
-        intent.putExtra("name", layoutName.getEditText().getText());
-        intent.putExtra("type", layoutType.getEditText().getText());
-        setResult(RESULT_OK, intent);
-        finish();
+//        TextInputLayout layoutName = findViewById(R.id.recipe_name);
+//        TextInputLayout layoutType = findViewById(R.id.recipe_type);
+//        Intent intent = new Intent();
+//        intent.putExtra("name", layoutName.getEditText().getText());
+//        intent.putExtra("type", layoutType.getEditText().getText());
+//        setResult(RESULT_OK, intent);
+//        finish();
     }
 }

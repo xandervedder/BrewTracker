@@ -22,6 +22,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 0: return new HomeFragment();
             case 1: return new RecipeFragment();
             case 2: return new BrewFragment();
+            // This shouldn't happen, but if it does, the user will see a blank page.
             default: return new Fragment();
         }
     }

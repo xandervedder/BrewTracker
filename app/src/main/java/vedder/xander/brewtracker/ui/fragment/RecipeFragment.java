@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vedder.xander.brewtracker.R;
+import vedder.xander.brewtracker.factory.ViewFactory;
 import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.model.AbstractDataItem;
 import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
 import vedder.xander.brewtracker.ui.activity.CreateRecipeActivity;
+import vedder.xander.brewtracker.ui.view.AbstractView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -65,9 +67,12 @@ public class RecipeFragment extends Fragment {
             }
         });
 
+        List<ViewFactory<? extends AbstractView>> factories = new ArrayList<>();
+        factories.add(new CardFactory());
+
         this.recyclerView = getView().findViewById(R.id.recipes_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new GenericAdapter(this.recipes, new CardFactory()));
+        recyclerView.setAdapter(new GenericAdapter(this.recipes, factories, true, null));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
