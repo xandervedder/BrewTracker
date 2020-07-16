@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -8,6 +8,7 @@
 
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/colorToolbar</item>
+        <item name="android:navigationBarColor">@color/appBackground</item>
 
     </style>
 

@@ -12,7 +12,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:stateListAnimator="@null">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -29,12 +28,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- TODO: This way of doing margins is not the best solution:  -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="48dp"
         android:clipToPadding="false" />
 
     <com.google.android.material.tabs.TabLayout
@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:elevation="10dp"
+        android:background="@color/appBackground"
         app:tabIconTint="@color/colorPrimary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
