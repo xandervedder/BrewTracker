@@ -1,6 +1,5 @@
 package vedder.xander.brewtracker.adapter;
 
-import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,20 +17,19 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<ViewFactory<? extends AbstractView>> viewFactories;
     private List<AbstractDataItem> dataset;
 
-    private boolean singleViewtype;
     private boolean usingDataset;
     private Integer customDatasetSize;
     private ViewMode viewMode;
 
     public GenericAdapter(List<AbstractDataItem> dataset,
                           @NonNull List<ViewFactory<? extends AbstractView>> factories,
-                          @Nullable Integer customSize) {
+                          @Nullable Integer customSize,
+                          ViewMode viewMode) {
         this.dataset = dataset;
         this.viewFactories = factories;
         this.customDatasetSize = customSize;
-        this.singleViewtype = factories.size() == 1;
         this.usingDataset = dataset != null;
-        this.viewMode = ViewMode.SEQUENTIAL;
+        this.viewMode = viewMode;
     }
 
     @NonNull
@@ -51,15 +49,21 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((GenericViewHolder) holder).getItem().setDataItem(this.dataset.get(position));
     }
 
-    private int x = 0;
-
     @Override
     public int getItemViewType(int position) {
-        if (this.singleViewtype) // We don't want any other viewType
+        if (this.viewMode == ViewMode.DEFAULT) // We don't want any other viewType
             return 0;
 
         if (this.viewMode == ViewMode.SEQUENTIAL)
             return position % this.viewFactories.size();
+
+        if (this.viewMode == ViewMode.PAIRS) {
+            if (position == 0 || position == 1) // Start, edge case
+                return 0;
+
+            if (position % 2 == 0) return (position / 2) % this.viewFactories.size();
+            else return ((position - 1) / 2) % this.viewFactories.size();
+        }
 
         return super.getItemViewType(position);
     }
@@ -87,6 +91,8 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public enum ViewMode {
+        DEFAULT,
         SEQUENTIAL, // 1 2 or 1 2 3 or 1 2 3 4 ...
+        PAIRS, // e.g. 11 22 or 11 22 33
     }
 }

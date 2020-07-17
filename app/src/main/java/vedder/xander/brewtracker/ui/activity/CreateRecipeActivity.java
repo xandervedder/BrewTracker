@@ -31,7 +31,7 @@ public class CreateRecipeActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recipe_create_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new GenericAdapter(null, factories, 50));
+        recyclerView.setAdapter(new GenericAdapter(null, factories, 50, GenericAdapter.ViewMode.PAIRS));
 
 //        Button button = findViewById(R.id.create_recipe);
 //        button.setOnClickListener(new View.OnClickListener() {
