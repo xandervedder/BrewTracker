@@ -11,6 +11,7 @@ import java.util.List;
 
 import vedder.xander.brewtracker.R;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.factory.ButtonFactory;
 import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.factory.TextInputFactory;
 import vedder.xander.brewtracker.factory.ViewFactory;
@@ -24,12 +25,13 @@ public class CreateRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_recipe);
 
         List<ViewFactory<? extends AbstractView>> factories = new ArrayList<>();
+        factories.add(new CardFactory());
         factories.add(new TextInputFactory());
-//        factories.add(new CardFactory());
+        factories.add(new ButtonFactory());
 
         RecyclerView recyclerView = findViewById(R.id.recipe_create_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new GenericAdapter(null, factories, true, 3));
+        recyclerView.setAdapter(new GenericAdapter(null, factories, 50));
 
 //        Button button = findViewById(R.id.create_recipe);
 //        button.setOnClickListener(new View.OnClickListener() {
