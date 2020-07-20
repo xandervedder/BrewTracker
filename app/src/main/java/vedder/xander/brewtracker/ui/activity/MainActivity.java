@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        this.loadFragment(new HomeFragment());
     }
 
     private boolean loadFragment(Fragment fragment) {

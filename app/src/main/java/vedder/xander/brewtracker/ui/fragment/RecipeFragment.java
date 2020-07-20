@@ -58,7 +58,8 @@ public class RecipeFragment extends Fragment {
         this.recipes.add(new Recipe(LocalDate.now(), "Test 6", "Beer"));
         this.recipes.add(new Recipe(LocalDate.now(), "Test 7", "Beer"));
 
-        final FloatingActionButton fab = getView().findViewById(R.id.add_recipe);
+        final FloatingActionButton fab = getActivity().findViewById(R.id.fab_button);
+        fab.setVisibility(View.VISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +73,7 @@ public class RecipeFragment extends Fragment {
 
         this.recyclerView = getView().findViewById(R.id.recipes_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new GenericAdapter(null, factories, 100, GenericAdapter.ViewMode.DEFAULT));
+        recyclerView.setAdapter(new GenericAdapter(this.recipes, factories, null, GenericAdapter.ViewMode.DEFAULT));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
