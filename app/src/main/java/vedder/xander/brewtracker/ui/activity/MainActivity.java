@@ -1,16 +1,19 @@
 package vedder.xander.brewtracker.ui.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import vedder.xander.brewtracker.R;
-import vedder.xander.brewtracker.adapter.ViewPagerAdapter;
+import vedder.xander.brewtracker.ui.fragment.BrewFragment;
+import vedder.xander.brewtracker.ui.fragment.HomeFragment;
+import vedder.xander.brewtracker.ui.fragment.RecipeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,12 +21,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), 0));
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_baseline_home_24);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_baseline_list_24);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_local_bar_24);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.item_home: return loadFragment(new HomeFragment());
+                    case R.id.item_recipe: return loadFragment(new RecipeFragment());
+                    case R.id.item_brew: return loadFragment(new BrewFragment());
+                    default: return false;
+                }
+            }
+        });
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+        return true;
     }
 }

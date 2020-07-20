@@ -51,6 +51,9 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
+        if (this.viewMode == ViewMode.HEADER)
+            return position == 0 ? 0 : 1;
+
         if (this.viewMode == ViewMode.DEFAULT) // We don't want any other viewType
             return 0;
 
@@ -94,5 +97,6 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         DEFAULT,
         SEQUENTIAL, // 1 2 or 1 2 3 or 1 2 3 4 ...
         PAIRS, // e.g. 11 22 or 11 22 33
+        HEADER,
     }
 }

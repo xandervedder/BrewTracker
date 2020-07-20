@@ -72,7 +72,7 @@ public class RecipeFragment extends Fragment {
 
         this.recyclerView = getView().findViewById(R.id.recipes_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new GenericAdapter(this.recipes, factories, null, GenericAdapter.ViewMode.DEFAULT));
+        recyclerView.setAdapter(new GenericAdapter(null, factories, 100, GenericAdapter.ViewMode.DEFAULT));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
