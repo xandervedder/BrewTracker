@@ -10,6 +10,7 @@ import java.util.List;
 
 import vedder.xander.brewtracker.factory.ViewFactory;
 import vedder.xander.brewtracker.model.AbstractDataItem;
+import vedder.xander.brewtracker.pattern.ViewTypePattern;
 import vedder.xander.brewtracker.ui.view.AbstractView;
 
 public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -19,17 +20,17 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private boolean usingDataset;
     private Integer customDatasetSize;
-    private ViewMode viewMode;
+    private ViewTypePattern pattern;
 
     public GenericAdapter(List<AbstractDataItem> dataset,
                           @NonNull List<ViewFactory<? extends AbstractView>> factories,
                           @Nullable Integer customSize,
-                          ViewMode viewMode) {
+                          ViewTypePattern pattern) {
         this.dataset = dataset;
         this.viewFactories = factories;
         this.customDatasetSize = customSize;
         this.usingDataset = dataset != null;
-        this.viewMode = viewMode;
+        this.pattern = pattern;
     }
 
     @NonNull
@@ -51,29 +52,17 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (this.viewMode == ViewMode.HEADER)
-            return position == 0 ? 0 : 1;
-
-        if (this.viewMode == ViewMode.DEFAULT) // We don't want any other viewType
-            return 0;
-
-        if (this.viewMode == ViewMode.SEQUENTIAL)
-            return position % this.viewFactories.size();
-
-        if (this.viewMode == ViewMode.PAIRS) {
-            if (position == 0 || position == 1) // Start, edge case
-                return 0;
-
-            if (position % 2 == 0) return (position / 2) % this.viewFactories.size();
-            else return ((position - 1) / 2) % this.viewFactories.size();
-        }
+        // This works fine now, but there is no option to specify when a pattern needs to repeat some other
+        // view type, currently it's all sequential (which is fine most of the time, but not always)
+        if (this.pattern != null)
+            return pattern.get(position, this.dataset.size());
 
         return super.getItemViewType(position);
     }
 
     @Override
     public int getItemCount() {
-        if (this.customDatasetSize != null)
+        if (this.customDatasetSize != null) // Might remove this option...
             return this.customDatasetSize;
 
         return this.dataset.size();
@@ -91,12 +80,5 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public AbstractView getItem() {
             return view;
         }
-    }
-
-    public enum ViewMode {
-        DEFAULT,
-        SEQUENTIAL, // 1 2 or 1 2 3 or 1 2 3 4 ...
-        PAIRS, // e.g. 11 22 or 11 22 33
-        HEADER,
     }
 }

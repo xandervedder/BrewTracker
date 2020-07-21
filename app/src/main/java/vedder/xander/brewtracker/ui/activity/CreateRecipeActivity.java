@@ -11,6 +11,7 @@ import java.util.List;
 
 import vedder.xander.brewtracker.R;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.pattern.SequentialViewTypePattern;
 import vedder.xander.brewtracker.factory.ButtonFactory;
 import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.factory.TextInputFactory;
@@ -29,9 +30,9 @@ public class CreateRecipeActivity extends AppCompatActivity {
         factories.add(new TextInputFactory());
         factories.add(new ButtonFactory());
 
-        RecyclerView recyclerView = findViewById(R.id.recipe_create_recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.ingredient_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new GenericAdapter(null, factories, 50, GenericAdapter.ViewMode.HEADER));
+        recyclerView.setAdapter(new GenericAdapter(null, factories, 50, new SequentialViewTypePattern("0:0:1:1", factories.size()).compile()));
 
 //        Button button = findViewById(R.id.create_recipe);
 //        button.setOnClickListener(new View.OnClickListener() {
