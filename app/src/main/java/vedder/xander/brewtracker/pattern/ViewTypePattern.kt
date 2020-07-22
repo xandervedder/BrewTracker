@@ -6,5 +6,5 @@ interface ViewTypePattern {
 
     fun compile(): ViewTypePattern
 
-    fun get(position: Int, datasetSize: Int): Int
+    fun get(position: Int): Int
 }

@@ -55,7 +55,7 @@ public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         // This works fine now, but there is no option to specify when a pattern needs to repeat some other
         // view type, currently it's all sequential (which is fine most of the time, but not always)
         if (this.pattern != null)
-            return pattern.get(position, this.dataset.size());
+            return pattern.get(position);
 
         return super.getItemViewType(position);
     }
