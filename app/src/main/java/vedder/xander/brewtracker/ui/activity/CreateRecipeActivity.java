@@ -37,8 +37,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 null,
                 factories,
                 50,
-//                new SequentialViewTypePattern("1:1:2", factories.size()).compile()
-                new IntervalViewTypePattern("2:1:2", 3, factories.size(), 0).compile()
+//                new SequentialViewTypePattern("1:1:2", factories.size())
+                new IntervalViewTypePattern("2:1:2", 3, factories.size(), 0)
         ));
 
 //        Button button = findViewById(R.id.create_recipe);
