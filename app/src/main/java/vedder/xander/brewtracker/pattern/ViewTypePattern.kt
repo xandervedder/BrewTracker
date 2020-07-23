@@ -4,6 +4,7 @@ const val STRING_DELIMITER = ":"
 
 fun compile(pattern: String, maxIndex: Int): List<Int> {
     val indexList: MutableList<Int> = ArrayList()
+    // TODO: edge case: what if there are no delimiters in the string?
     for (num in pattern.split(STRING_DELIMITER)) {
         val index = num.toInt()
         if (index > maxIndex)
