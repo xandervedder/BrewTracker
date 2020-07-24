@@ -71,16 +71,16 @@ public class RecipeFragment extends Fragment {
         List<ViewFactory<? extends AbstractView>> factories = new ArrayList<>();
         factories.add(new CardFactory());
 
-        this.recyclerView = getView().findViewById(R.id.recipes_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new GenericAdapter(this.recipes, factories, null, null));
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0) fab.hide();
-                else if (dy < 0) fab.show();
-            }
-        });
+//        this.recyclerView = getView().findViewById(R.id.recipes_recyclerview);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerView.setAdapter(new GenericAdapter(this.recipes, factories, null, null));
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                if (dy > 0) fab.hide();
+//                else if (dy < 0) fab.show();
+//            }
+//        });
     }
 
     @Override

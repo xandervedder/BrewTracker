@@ -1,6 +1,8 @@
 package vedder.xander.brewtracker.model;
 
-public abstract class AbstractDataItem {
+import vedder.xander.brewtracker.config.ConfigData;
+
+public abstract class AbstractDataItem implements ConfigData {
 
     public abstract String get(String parameterName);
 }

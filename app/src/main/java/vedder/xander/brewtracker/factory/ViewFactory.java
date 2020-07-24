@@ -1,10 +1,9 @@
 package vedder.xander.brewtracker.factory;
 
 import android.content.Context;
+import android.view.View;
 
-import vedder.xander.brewtracker.ui.view.AbstractView;
-
-public interface ViewFactory<T extends AbstractView> {
+public interface ViewFactory<T extends View> {
 
     T assemble(Context context);
 }
