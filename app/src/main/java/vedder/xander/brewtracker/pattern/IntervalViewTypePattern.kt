@@ -5,9 +5,9 @@ class IntervalViewTypePattern(
     viewFactoriesLength: Int,
     private val intervalSize: Int,
     private val defaultIndex: Int
-) : ViewTypePattern {
+) : ViewTypePattern() {
 
-    private val indexList: List<Int> = compile(intervalPattern, viewFactoriesLength - 1)
+    private val indexList: List<Int> = this.compile(intervalPattern, viewFactoriesLength - 1)
 
     override fun get(position: Int): Int {
         val positionInPair = position % (this.intervalSize + this.indexList.size)

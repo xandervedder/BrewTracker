@@ -4,10 +4,10 @@ class HeaderViewTypePattern(
     headerPattern: String,
     bodyPattern: String,
     viewFactoriesLength: Int
-) : ViewTypePattern {
+) : ViewTypePattern() {
 
-    private val headerIndexList: List<Int> = compile(headerPattern, viewFactoriesLength - 1)
-    private val bodyIndexList: List<Int> = compile(bodyPattern, viewFactoriesLength - 1)
+    private val headerIndexList: List<Int> = this.compile(headerPattern, viewFactoriesLength - 1)
+    private val bodyIndexList: List<Int> = this.compile(bodyPattern, viewFactoriesLength - 1)
 
     override fun get(position: Int): Int {
         val divided = position / (headerIndexList.size - 1)
