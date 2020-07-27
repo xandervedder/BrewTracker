@@ -15,8 +15,6 @@ class GenericAdapter(
         private val pattern: ViewTypePattern?,
         private val listener: EventListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-//    private val usingDataset: Boolean = dataset != null
-//    private val customDatasetSize: Int = customSize!!
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = viewFactories[viewType].assemble(parent.context)
@@ -44,9 +42,7 @@ class GenericAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        if (usingDataset) {
-            (holder as GenericViewHolder).setConfig(dataset[position])
-//        }
+        (holder as GenericViewHolder).setConfig(dataset[position])
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -54,10 +50,7 @@ class GenericAdapter(
     }
 
     override fun getItemCount(): Int {
-//        if (usingDataset && dataset != null) {
-            return dataset.size
-//        }
-//        return customDatasetSize
+        return dataset.size
     }
 
     abstract class GenericViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
