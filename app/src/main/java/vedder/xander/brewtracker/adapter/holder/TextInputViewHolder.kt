@@ -1,7 +1,6 @@
 package vedder.xander.brewtracker.adapter.holder
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.adapter.GenericAdapter
@@ -14,11 +13,12 @@ class TextInputViewHolder(view: View) : GenericAdapter.GenericViewHolder(view) {
     override fun setConfig(data: ConfigData) {
         if (data is TextEditConfig) {
             textInput.hint = data.hint
+            textInput.addOnEditTextAttachedListener { data.text = textInput.editText?.text.toString() }
         }
     }
 
     class Factory : ViewHolderFactory {
-        override fun assemble(view: View): RecyclerView.ViewHolder {
+        override fun assemble(view: View): GenericAdapter.GenericViewHolder {
             return TextInputViewHolder(view)
         }
     }
