@@ -3,6 +3,7 @@ package vedder.xander.brewtracker.model;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
+// TODO: maybe a way to go from ConfigData to Recipe and vice-versa?
 public class Recipe extends AbstractDataItem {
 
     private LocalDate createdAt;

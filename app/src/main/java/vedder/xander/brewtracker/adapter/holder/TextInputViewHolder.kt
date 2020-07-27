@@ -1,6 +1,8 @@
 package vedder.xander.brewtracker.adapter.holder
 
+import android.util.Log
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.adapter.GenericAdapter
@@ -13,7 +15,9 @@ class TextInputViewHolder(view: View) : GenericAdapter.GenericViewHolder(view) {
     override fun setConfig(data: ConfigData) {
         if (data is TextEditConfig) {
             textInput.hint = data.hint
-            textInput.addOnEditTextAttachedListener { data.text = textInput.editText?.text.toString() }
+            textInput.editText?.addTextChangedListener {
+                data.text = textInput.editText?.text.toString()
+            }
         }
     }
 

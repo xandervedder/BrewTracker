@@ -18,8 +18,8 @@ class ButtonViewHolder(view: View) : GenericAdapter.GenericViewHolder(view) {
 
     override fun shouldHaveListener(): Boolean = true
 
-    override fun addListener(listener: GenericAdapter.EventListener) {
-        button.setOnClickListener { listener.onEvent() }
+    override fun addListener(listener: GenericAdapter.EventListener?, function: () -> List<ConfigData>) {
+        button.setOnClickListener { listener?.onEvent(function()) }
     }
 
     class Factory : ViewHolderFactory {

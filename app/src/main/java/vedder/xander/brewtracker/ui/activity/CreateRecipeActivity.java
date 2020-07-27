@@ -1,8 +1,9 @@
 package vedder.xander.brewtracker.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +34,8 @@ public class CreateRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_recipe);
 
         List<ConfigData> dataset = new ArrayList<>();
-        dataset.add(new TextEditConfig("Name"));
-        dataset.add(new TextEditConfig("Type"));
+        dataset.add(new TextEditConfig("Name", ""));
+        dataset.add(new TextEditConfig("Type", ""));
         dataset.add(new ButtonConfig("Send signal to activity"));
 
         List<ViewHolderFactory> viewHolders = new ArrayList<>();
@@ -51,32 +52,22 @@ public class CreateRecipeActivity extends AppCompatActivity {
                 dataset,
                 factories,
                 viewHolders,
-                null,
                 new SequentialViewTypePattern("0:0:1", factories.size()),
-                new GenericAdapter.EventListener() {
-                    @Override
-                    public void onEvent() {
-                        Toast.makeText(getBaseContext(), "event recieved", Toast.LENGTH_LONG).show();
-                    }
+                data -> {
+                    Log.d("teststuff", data.toString());
+                    createRecipe(
+                            ((TextEditConfig) data.get(0)).getText(),
+                            ((TextEditConfig) data.get(1)).getText()
+                    );
                 }
         ));
-
-//        Button button = findViewById(R.id.create_recipe);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createRecipe();
-//            }
-//        });
     }
 
-    private void createRecipe() {
-//        TextInputLayout layoutName = findViewById(R.id.recipe_name);
-//        TextInputLayout layoutType = findViewById(R.id.recipe_type);
-//        Intent intent = new Intent();
-//        intent.putExtra("name", layoutName.getEditText().getText());
-//        intent.putExtra("type", layoutType.getEditText().getText());
-//        setResult(RESULT_OK, intent);
-//        finish();
+    private void createRecipe(String name, String type) {
+        Intent intent = new Intent();
+        intent.putExtra("name", name);
+        intent.putExtra("type", type);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
