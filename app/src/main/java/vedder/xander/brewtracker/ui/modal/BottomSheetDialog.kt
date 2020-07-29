@@ -16,7 +16,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.bottom_sheet, container, false)
         view.findViewById<MaterialButton>(R.id.add_ingredient).setOnClickListener {
-            listener?.onCancel(Ingredient(
+            listener?.onDismiss(Ingredient(
                     view.findViewById<TextInputLayout>(R.id.ingredient_name)?.editText?.text.toString(),
                     view.findViewById<TextInputLayout>(R.id.ingredient_amount)?.editText?.text.toString(),
                     view.findViewById<TextInputLayout>(R.id.ingredient_unit)?.editText?.text.toString()
@@ -30,6 +30,6 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
 
     interface OnCancelListener {
         // TODO: Should be generalized (testing for now)
-        fun onCancel(ingredient: Ingredient)
+        fun onDismiss(ingredient: Ingredient)
     }
 }

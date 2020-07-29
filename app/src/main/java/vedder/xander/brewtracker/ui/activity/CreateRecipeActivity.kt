@@ -36,8 +36,8 @@ class CreateRecipeActivity : AppCompatActivity() {
         val dataset: MutableList<ConfigData> = ArrayList()
         dataset.add(TextEditConfig("Name", ""))
         dataset.add(TextEditConfig("Type", ""))
-
         dataset.add(ButtonConfig("Create Recipe")) // String should be a constant or ID (attrs.xml)
+
         val viewHolders: MutableList<ViewHolderFactory> = ArrayList()
         viewHolders.add(TextInputViewHolder.Factory())
         viewHolders.add(ButtonViewHolder.Factory())
@@ -68,7 +68,7 @@ class CreateRecipeActivity : AppCompatActivity() {
             val bottomSheetDialog = BottomSheetDialog()
             bottomSheetDialog.show(supportFragmentManager, null)
             bottomSheetDialog.listener = object : BottomSheetDialog.OnCancelListener {
-                override fun onCancel(ingredient: Ingredient) {
+                override fun onDismiss(ingredient: Ingredient) {
                     Log.d("CreateRecipe", ingredient.toString())
 
                     // TODO: add item to recyclerview
