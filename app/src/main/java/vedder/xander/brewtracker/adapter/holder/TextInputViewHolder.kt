@@ -1,6 +1,5 @@
 package vedder.xander.brewtracker.adapter.holder
 
-import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout

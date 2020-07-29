@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,11 +28,10 @@ import vedder.xander.brewtracker.config.CardConfig;
 import vedder.xander.brewtracker.config.ConfigData;
 import vedder.xander.brewtracker.factory.ViewFactory;
 import vedder.xander.brewtracker.factory.CardFactory;
-import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.pattern.SequentialViewTypePattern;
 import vedder.xander.brewtracker.ui.activity.CreateRecipeActivity;
-import vedder.xander.brewtracker.ui.view.AbstractView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -72,7 +72,7 @@ public class RecipeFragment extends Fragment {
             startActivityForResult(intent, REQUEST_CODE);
         });
 
-        List<ViewFactory<? extends AbstractView>> factories = new ArrayList<>();
+        List<ViewFactory<? extends LinearLayout>> factories = new ArrayList<>();
         factories.add(new CardFactory());
 
         List<ViewHolderFactory> viewHolderFactories = new ArrayList<>();
@@ -103,11 +103,8 @@ public class RecipeFragment extends Fragment {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK && data != null) {
                 Bundle bundle = data.getExtras();
-                this.recipes.add(new CardConfig(
-                        bundle.get("name").toString(),
-                        LocalDate.now(),
-                        bundle.get("type").toString()
-                ));
+                Recipe recipe = bundle.getParcelable("recipe");
+                this.recipes.add(new CardConfig(recipe.getName(), recipe.getCreatedAt(), recipe.getType()));
 
                 new Handler().postDelayed(this::updateRecyclerView, 500);
             }
