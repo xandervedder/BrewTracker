@@ -26,7 +26,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
         return view
     }
 
-    override fun getTheme(): Int = R.style.BottomSheetStyle
+    override fun getTheme(): Int = R.style.BrewTracker_BottomSheetDialogTheme
 
     interface OnCancelListener {
         // TODO: Should be generalized (testing for now)
