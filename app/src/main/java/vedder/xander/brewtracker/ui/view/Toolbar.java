@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import vedder.xander.brewtracker.R;
 
 public class Toolbar extends androidx.appcompat.widget.Toolbar {
-
     public Toolbar(Context context) {
         this(context, null);
     }
