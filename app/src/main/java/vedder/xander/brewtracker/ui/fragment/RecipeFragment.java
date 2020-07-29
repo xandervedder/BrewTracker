@@ -54,6 +54,7 @@ public class RecipeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // TODO: We should really think about how we go from model to config
         this.recipes.add(new CardConfig("Test 1", LocalDate.now(),  "Beer"));
         this.recipes.add(new CardConfig("Test 2", LocalDate.now(),  "Cider"));
         this.recipes.add(new CardConfig("Test 3", LocalDate.now(),  "Cider"));
