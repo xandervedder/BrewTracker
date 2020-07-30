@@ -2,6 +2,8 @@ package vedder.xander.brewtracker.ui.activity
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.animation.TranslateAnimation
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -11,10 +13,12 @@ import vedder.xander.brewtracker.ui.fragment.BrewFragment
 import vedder.xander.brewtracker.ui.fragment.HomeFragment
 import vedder.xander.brewtracker.ui.fragment.RecipeFragment
 
+
 class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val recipeFragment = RecipeFragment()
     private val brewFragment = BrewFragment()
+    private lateinit var titleTextView: TextView
 
     // HomeFragment should be the first one to load
     private var activeFragment: Fragment = homeFragment
@@ -22,16 +26,28 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        titleTextView = findViewById(R.id.toolbar_title)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
-                R.id.item_home -> replaceFragment(homeFragment)
-                R.id.item_recipe -> replaceFragment(recipeFragment)
-                R.id.item_brew -> replaceFragment(brewFragment)
+                R.id.item_home -> {
+                    replaceTitleText(R.string.fragment_home_title)
+                    return@setOnNavigationItemSelectedListener replaceFragment(homeFragment)
+                }
+                R.id.item_recipe -> {
+                    replaceTitleText(R.string.fragment_recipe_title)
+                    return@setOnNavigationItemSelectedListener replaceFragment(recipeFragment)
+                }
+                R.id.item_brew -> {
+                    replaceTitleText(R.string.fragment_brew_title)
+                    return@setOnNavigationItemSelectedListener replaceFragment(brewFragment)
+                }
                 else -> false
             }
         }
         replaceFragment(activeFragment)
+        replaceTitleText(R.string.fragment_home_title)
     }
 
     private fun replaceFragment(fragment: Fragment): Boolean {
@@ -44,5 +60,10 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         activeFragment = fragment
         return true
+    }
+
+    private fun replaceTitleText(newTitleId: Int) {
+        // TODO: animation?
+        titleTextView.text = getString(newTitleId);
     }
 }

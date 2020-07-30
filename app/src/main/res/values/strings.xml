@@ -18,9 +18,9 @@
     <string name="bottom_menu_brew">Brew</string>
 
     <!-- Fragment related-->
-    <string name="fragment_home">Home</string>
-    <string name="fragment_recipe">Recipe</string>
-    <string name="fragment_brew">Brew</string>
+    <string name="fragment_home_title">Home</string>
+    <string name="fragment_recipe_title">Recipe</string>
+    <string name="fragment_brew_title">Brew</string>
 
     <!-- Ingredient related-->
     <string name="ingredient_intro">Add new Ingredient</string>
