@@ -23,7 +23,7 @@
     <string name="fragment_brew">Brew</string>
 
     <!-- Ingredient related-->
-    <string name="ingredient_intro">Add a new ingredient</string>
+    <string name="ingredient_intro">Add new Ingredient</string>
     <string name="ingredient_name">Name</string>
     <string name="ingredient_amount">Amount</string>
     <string name="ingredient_type">Type</string>
