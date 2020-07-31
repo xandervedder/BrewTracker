@@ -4,21 +4,21 @@ import android.view.View
 import com.google.android.material.button.MaterialButton
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.adapter.GenericAdapter
-import vedder.xander.brewtracker.config.ButtonConfig
-import vedder.xander.brewtracker.config.ConfigData
+import vedder.xander.brewtracker.model.Model
+import vedder.xander.brewtracker.model.Text
 
 class ButtonViewHolder(view: View) : GenericAdapter.GenericViewHolder(view) {
     private var button: MaterialButton = view.findViewById(R.id.button)
 
-    override fun setConfig(data: ConfigData) {
-        if (data is ButtonConfig) {
+    override fun setConfig(data: Model) {
+        if (data is Text) {
             button.text = data.text
         }
     }
 
     override fun shouldHaveListener(): Boolean = true
 
-    override fun addListener(listener: GenericAdapter.EventListener?, function: () -> List<ConfigData>) {
+    override fun addListener(listener: GenericAdapter.EventListener?, function: () -> List<Model>) {
         button.setOnClickListener { listener?.onEvent(function()) }
     }
 

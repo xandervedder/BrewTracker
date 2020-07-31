@@ -4,18 +4,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import vedder.xander.brewtracker.adapter.holder.ViewHolderFactory
-import vedder.xander.brewtracker.config.ConfigData
 import vedder.xander.brewtracker.factory.ViewFactory
+import vedder.xander.brewtracker.model.Model
 import vedder.xander.brewtracker.pattern.ViewTypePattern
 
 class GenericAdapter(
-        private val dataset: List<ConfigData>,
+        private val dataset: List<Model>,
         private val viewFactories: List<ViewFactory<out View>>,
         private val viewHolderFactories: List<ViewHolderFactory>,
         private val pattern: ViewTypePattern?,
         private val listener: EventListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = viewFactories[viewType].assemble(parent.context)
         view.layoutParams = ViewGroup.LayoutParams(
@@ -24,20 +23,20 @@ class GenericAdapter(
         )
         val holder = viewHolderFactories[viewType].assemble(view)
         if (holder.shouldHaveListener()) {
-            holder.addListener(listener) { getConfigsByPositions(listOf(0, 1)) }
+            holder.addListener(listener) { getModelsByPositions(listOf(0, 1)) }
         }
         return viewHolderFactories[viewType].assemble(view)
     }
 
-    private fun getConfigsByPositions(positions: List<Int>): List<ConfigData> {
-        val configData: MutableList<ConfigData> = ArrayList()
+    private fun getModelsByPositions(positions: List<Int>): MutableList<Model> {
+        val models: MutableList<Model> = ArrayList()
         for (position in positions) {
-            getConfigByPosition(position)?.let { configData.add(it) }
+            getModelByPosition(position)?.let { models.add(it) }
         }
-        return configData
+        return models
     }
 
-    private fun getConfigByPosition(position: Int): ConfigData? {
+    private fun getModelByPosition(position: Int): Model? {
         return dataset[position]
     }
 
@@ -54,12 +53,12 @@ class GenericAdapter(
     }
 
     abstract class GenericViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun setConfig(data: ConfigData)
+        abstract fun setConfig(data: Model)
         open fun shouldHaveListener(): Boolean = false
-        open fun addListener(listener: EventListener?, function: () -> List<ConfigData>) {}
+        open fun addListener(listener: EventListener?, function: () -> List<Model>) {}
     }
 
     interface EventListener {
-        fun onEvent(data: List<ConfigData>)
+        fun onEvent(data: List<Model>)
     }
 }

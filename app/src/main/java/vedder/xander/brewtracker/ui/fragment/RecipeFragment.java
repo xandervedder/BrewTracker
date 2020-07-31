@@ -25,11 +25,10 @@ import java.util.List;
 import vedder.xander.brewtracker.R;
 import vedder.xander.brewtracker.adapter.holder.CardViewHolder;
 import vedder.xander.brewtracker.adapter.holder.ViewHolderFactory;
-import vedder.xander.brewtracker.config.CardConfig;
-import vedder.xander.brewtracker.config.ConfigData;
 import vedder.xander.brewtracker.factory.ViewFactory;
 import vedder.xander.brewtracker.factory.CardFactory;
 import vedder.xander.brewtracker.adapter.GenericAdapter;
+import vedder.xander.brewtracker.model.Model;
 import vedder.xander.brewtracker.model.Recipe;
 import vedder.xander.brewtracker.pattern.SequentialViewTypePattern;
 import vedder.xander.brewtracker.ui.activity.CreateRecipeActivity;
@@ -41,20 +40,20 @@ public class RecipeFragment extends Fragment {
     private static final int REQUEST_CODE = 1;
 
     private RecyclerView recyclerView;
-    private List<ConfigData> recipes;
+    private List<Model> recipes;
 
     public RecipeFragment() {
         this.recipes = new ArrayList<>();
 
-        this.recipes.add(new CardConfig("Test 1", LocalDate.now(),  "Beer"));
-        this.recipes.add(new CardConfig("Test 2", LocalDate.now(),  "Cider"));
-        this.recipes.add(new CardConfig("Test 3", LocalDate.now(),  "Cider"));
-        this.recipes.add(new CardConfig("Test 4", LocalDate.now(),  "Mead"));
-        this.recipes.add(new CardConfig("Test 5", LocalDate.now(),  "Beer"));
-        this.recipes.add(new CardConfig("Test 6", LocalDate.now(),  "Cider"));
-        this.recipes.add(new CardConfig("Test 7", LocalDate.now(),  "Mead"));
-        this.recipes.add(new CardConfig("Test 8", LocalDate.now(),  "Cider"));
-        this.recipes.add(new CardConfig("Test 9", LocalDate.now(),  "Beer"));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 1", "Beer", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 2", "Cider", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 3", "Cider", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 4", "Mead", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 5", "Beer", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 6", "Cider", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 7", "Mead", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 8", "Cider", new ArrayList<>()));
+        this.recipes.add(new Recipe(LocalDate.now(),"Test 9", "Beer", new ArrayList<>()));
     }
 
     @Override
@@ -65,8 +64,6 @@ public class RecipeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d("DuplicateRecyclerViewBug", String.valueOf(this.recipes.size()));
-
         final FloatingActionButton fab = getActivity().findViewById(R.id.fab_button);
         fab.setVisibility(View.VISIBLE);
         fab.setOnClickListener(v -> {
@@ -106,7 +103,7 @@ public class RecipeFragment extends Fragment {
             if (resultCode == RESULT_OK && data != null) {
                 Bundle bundle = data.getExtras();
                 Recipe recipe = bundle.getParcelable("recipe");
-                this.recipes.add(new CardConfig(recipe.getName(), recipe.getCreatedAt(), recipe.getType()));
+                this.recipes.add(new Recipe(recipe.getCreatedAt(), recipe.getName(), recipe.getType(), recipe.getIngredients()));
 
                 new Handler().postDelayed(this::updateRecyclerView, 500);
             }

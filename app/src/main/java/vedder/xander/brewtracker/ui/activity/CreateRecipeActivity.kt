@@ -3,26 +3,23 @@ package vedder.xander.brewtracker.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.adapter.GenericAdapter
 import vedder.xander.brewtracker.adapter.holder.ButtonViewHolder
 import vedder.xander.brewtracker.adapter.holder.TextInputViewHolder
 import vedder.xander.brewtracker.adapter.holder.ViewHolderFactory
-import vedder.xander.brewtracker.config.ButtonConfig
-import vedder.xander.brewtracker.config.ConfigData
-import vedder.xander.brewtracker.config.TextEditConfig
 import vedder.xander.brewtracker.factory.ButtonFactory
 import vedder.xander.brewtracker.factory.TextInputFactory
 import vedder.xander.brewtracker.factory.ViewFactory
 import vedder.xander.brewtracker.model.Ingredient
+import vedder.xander.brewtracker.model.Model
 import vedder.xander.brewtracker.model.Recipe
+import vedder.xander.brewtracker.model.Text
 import vedder.xander.brewtracker.pattern.SequentialViewTypePattern
 import vedder.xander.brewtracker.ui.modal.BottomSheetDialog
 import java.time.LocalDate
@@ -36,10 +33,11 @@ class CreateRecipeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_recipe)
 
-        val dataset: MutableList<ConfigData> = ArrayList()
-        dataset.add(TextEditConfig("Name", ""))
-        dataset.add(TextEditConfig("Type", ""))
-        dataset.add(ButtonConfig("Create Recipe")) // String should be a constant or ID (attrs.xml)
+        // TODO: R.string.xyz
+        val dataset: MutableList<Model> = ArrayList()
+        dataset.add(Text("Name", ""))
+        dataset.add(Text("Type", ""))
+        dataset.add(Text("", "Create Recipe"))
 
         val viewHolders: MutableList<ViewHolderFactory> = ArrayList()
         viewHolders.add(TextInputViewHolder.Factory())
@@ -53,7 +51,7 @@ class CreateRecipeActivity : AppCompatActivity() {
         setUpFloatingButton()
     }
 
-    private fun setUpRecyclerView(dataset: MutableList<ConfigData>,
+    private fun setUpRecyclerView(dataset: MutableList<Model>,
                                   viewHolders: MutableList<ViewHolderFactory>,
                                   factories: MutableList<ViewFactory<out View>>) {
         val recyclerView = findViewById<RecyclerView>(R.id.ingredient_recyclerview)
@@ -64,10 +62,10 @@ class CreateRecipeActivity : AppCompatActivity() {
                 viewHolders,
                 SequentialViewTypePattern("0:0:1", factories.size),
                 object : GenericAdapter.EventListener {
-                    override fun onEvent(data: List<ConfigData>) {
+                    override fun onEvent(data: List<Model>) {
                         createRecipe(
-                                (data[0] as TextEditConfig).text,
-                                (data[1] as TextEditConfig).text
+                                (data[0] as Text).text,
+                                (data[1] as Text).text
                         )
                     }
                 }
