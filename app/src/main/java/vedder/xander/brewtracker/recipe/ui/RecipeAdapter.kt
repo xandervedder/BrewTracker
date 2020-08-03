@@ -9,7 +9,7 @@ import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.recipe.model.Recipe
 
 class RecipeAdapter(
-        private var dataset: MutableList<Recipe>
+        private var dataset: MutableList<Recipe?>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -22,7 +22,7 @@ class RecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as RecipeViewHolder).setRecipe(dataset[position])
+        dataset[position]?.let { (holder as RecipeViewHolder).setRecipe(it) }
     }
 
     class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
