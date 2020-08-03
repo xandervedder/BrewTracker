@@ -1,17 +1,15 @@
-package vedder.xander.brewtracker.ui.activity
+package vedder.xander.brewtracker
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.animation.TranslateAnimation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import vedder.xander.brewtracker.R
-import vedder.xander.brewtracker.ui.fragment.BrewFragment
-import vedder.xander.brewtracker.ui.fragment.HomeFragment
-import vedder.xander.brewtracker.ui.fragment.RecipeFragment
+import vedder.xander.brewtracker.brew.BrewFragment
+import vedder.xander.brewtracker.home.HomeFragment
+import vedder.xander.brewtracker.recipe.RecipeFragment
 
 
 class MainActivity : AppCompatActivity() {

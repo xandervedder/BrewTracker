@@ -1,4 +1,4 @@
-package vedder.xander.brewtracker.ui.modal
+package vedder.xander.brewtracker.widget
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import vedder.xander.brewtracker.R
-import vedder.xander.brewtracker.model.Ingredient
+import vedder.xander.brewtracker.ingredient.model.Ingredient
 
 class BottomSheetDialog : BottomSheetDialogFragment() {
     var listener: OnCancelListener? = null

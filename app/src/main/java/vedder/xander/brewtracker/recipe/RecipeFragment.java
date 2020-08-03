@@ -1,4 +1,4 @@
-package vedder.xander.brewtracker.ui.fragment;
+package vedder.xander.brewtracker.recipe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,15 +6,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vedder.xander.brewtracker.R;
-import vedder.xander.brewtracker.model.Recipe;
-import vedder.xander.brewtracker.ui.activity.CreateRecipeActivity;
+import vedder.xander.brewtracker.recipe.model.Recipe;
 
 import static android.app.Activity.RESULT_OK;
 
