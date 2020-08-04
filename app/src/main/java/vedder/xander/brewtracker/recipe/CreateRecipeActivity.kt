@@ -3,6 +3,7 @@ package vedder.xander.brewtracker.recipe
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import vedder.xander.brewtracker.R
@@ -19,6 +20,7 @@ class CreateRecipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_recipe)
+        findViewById<TextView>(R.id.toolbar_title).text = getString(R.string.title_activity_create_recipe)
         setUpFloatingButton()
     }
 
