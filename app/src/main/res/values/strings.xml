@@ -12,20 +12,27 @@
     <string name="input_hint_recipe_type">Type</string>
     <string name="button_create_recipe">Create</string>
 
-    <!-- Bottom menu related-->
+    <!-- Bottom menu related -->
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_recipe">Recipe</string>
     <string name="bottom_menu_brew">Brew</string>
 
-    <!-- Fragment related-->
+    <!-- Fragment related -->
     <string name="fragment_home_title">Home</string>
     <string name="fragment_recipe_title">Recipe</string>
     <string name="fragment_brew_title">Brew</string>
 
-    <!-- Ingredient related-->
+    <!-- Recipe related -->
+    <string name="recipe_type_hint">Type</string>
+    <string name="recipe_name_hint">Name</string>
+    <string name="recipe_ingredient_button">Add Ingredient</string>
+    <string name="recipe_add_button">Add Recipe</string>
+    <string name="recipe_ingredients">Ingredients</string>
+
+    <!-- Ingredient related -->
     <string name="ingredient_intro">Add new Ingredient</string>
     <string name="ingredient_name">Name</string>
     <string name="ingredient_amount">Amount</string>
     <string name="ingredient_type">Type</string>
-    <string name="ingredient_add">Add ingredient</string>
+    <string name="recipe_add">Add Recipe</string>
 </resources>

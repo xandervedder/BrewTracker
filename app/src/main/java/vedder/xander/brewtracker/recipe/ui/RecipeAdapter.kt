@@ -9,9 +9,8 @@ import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.recipe.model.Recipe
 
 class RecipeAdapter(
-        private var dataset: MutableList<Recipe?>
+        private var dataset: MutableList<Recipe>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
         return RecipeViewHolder(view)
@@ -25,13 +24,13 @@ class RecipeAdapter(
         dataset[position]?.let { (holder as RecipeViewHolder).setRecipe(it) }
     }
 
-    class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val brewType: TextView = view.findViewById(R.id.card_brew_type)
         private val dateCreated: TextView = view.findViewById(R.id.card_date_created)
         private val title: TextView = view.findViewById(R.id.card_title)
 
         fun setRecipe(recipe: Recipe) {
-            brewType.text = recipe.type
+            brewType.text = recipe.type.toString()
             title.text = recipe.name
             dateCreated.text = recipe.createdAt.toString()
         }

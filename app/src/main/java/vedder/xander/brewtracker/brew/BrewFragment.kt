@@ -15,7 +15,7 @@ class BrewFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fab: FloatingActionButton = activity!!.findViewById(R.id.fab_button)
+        val fab: FloatingActionButton = activity!!.findViewById(R.id.recipe_fab_button)
         fab.visibility = View.GONE
     }
 }

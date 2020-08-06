@@ -81,6 +81,6 @@
         android:layout_marginBottom="15dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="@string/ingredient_add" />
+        android:text="@string/recipe_add" />
 
 </LinearLayout>

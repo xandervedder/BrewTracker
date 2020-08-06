@@ -9,6 +9,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.ingredient.model.Ingredient
+import vedder.xander.brewtracker.ingredient.model.unitTypeFromString
 
 class BottomSheetDialog : BottomSheetDialogFragment() {
     var listener: OnCancelListener? = null
@@ -19,7 +20,7 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             listener?.onDismiss(Ingredient(
                     view.findViewById<TextInputLayout>(R.id.ingredient_name)?.editText?.text.toString(),
                     view.findViewById<TextInputLayout>(R.id.ingredient_amount)?.editText?.text.toString(),
-                    view.findViewById<TextInputLayout>(R.id.ingredient_unit)?.editText?.text.toString()
+                    unitTypeFromString(view.findViewById<TextInputLayout>(R.id.ingredient_unit)?.editText?.text.toString())
             ))
             dismiss()
         }
