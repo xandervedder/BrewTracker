@@ -35,4 +35,8 @@
     <string name="ingredient_amount">Amount</string>
     <string name="ingredient_type">Type</string>
     <string name="recipe_add">Add Recipe</string>
+
+    <!-- Brew related -->
+    <string name="brew_add">Add Brew</string>
+
 </resources>

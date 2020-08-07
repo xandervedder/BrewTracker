@@ -3,16 +3,19 @@ package vedder.xander.brewtracker.recipe
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 import vedder.xander.brewtracker.R
 import vedder.xander.brewtracker.brew.model.brewTypeFromString
 import vedder.xander.brewtracker.ingredient.IngredientsFragment
 import vedder.xander.brewtracker.ingredient.model.Ingredient
+import vedder.xander.brewtracker.ingredient.model.unitTypeFromString
 import vedder.xander.brewtracker.recipe.model.Recipe
 import vedder.xander.brewtracker.widget.BottomSheetDialog
 import java.time.LocalDate
@@ -59,11 +62,15 @@ class CreateRecipeActivity : AppCompatActivity() {
     private fun addIngredient() {
         val bottomSheetDialog = BottomSheetDialog()
         bottomSheetDialog.show(supportFragmentManager, null)
-        bottomSheetDialog.listener = object : BottomSheetDialog.OnCancelListener {
-            override fun onDismiss(ingredient: Ingredient) {
-                ingredientsFragment.onIngredientCreated(ingredient)
+        bottomSheetDialog.attach(object : BottomSheetDialog.OnDismissListener {
+            override fun onDismiss(view: View) {
+                ingredientsFragment.onIngredientCreated(Ingredient(
+                        view.findViewById<TextInputLayout>(R.id.ingredient_name)?.editText?.text.toString(),
+                        view.findViewById<TextInputLayout>(R.id.ingredient_amount)?.editText?.text.toString(),
+                        unitTypeFromString(view.findViewById<TextInputLayout>(R.id.ingredient_unit)?.editText?.text.toString())
+                ))
             }
-        }
+        }, View.inflate(baseContext, R.layout.content_ingredient_bottomsheet, null), R.id.add_ingredient)
     }
 
     private fun addRecipe() {

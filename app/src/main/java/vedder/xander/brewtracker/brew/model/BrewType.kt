@@ -15,6 +15,7 @@ fun brewTypeFromString(string: String): BrewType {
 
 @Parcelize
 enum class BrewType(val stringValue: String) : Parcelable {
+    // TODO: string resource
     BEER("Beer"),
     WINE("Wine"),
     MEAD("Mead");

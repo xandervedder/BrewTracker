@@ -21,11 +21,11 @@ class RecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        dataset[position]?.let { (holder as RecipeViewHolder).setRecipe(it) }
+        dataset[position].let { (holder as RecipeViewHolder).setRecipe(it) }
     }
 
     inner class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val brewType: TextView = view.findViewById(R.id.card_brew_type)
+        private val brewType: TextView = view.findViewById(R.id.card_chip)
         private val dateCreated: TextView = view.findViewById(R.id.card_date_created)
         private val title: TextView = view.findViewById(R.id.card_title)
 
